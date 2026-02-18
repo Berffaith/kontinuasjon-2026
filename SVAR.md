@@ -126,14 +126,11 @@ This was solved by using an alpine version of temurin for runtime which gives a 
 
 The need for well defined DevOps practices have always been important, with or without the help of AI for development. <br>
 What I have found out when working in a team that are actively using AI in development, is that the quality of the AI generated code is very good in isolation but lacking in the context of the entire project. <br><br>
-
 The best use for AI that I have personally found, is that it's the best developer I've ever seen when it comes to creating unit tests on finished code. <br>
 The tests generated covers most logical branches and work well in isolation, while made in a fraction of the time that a human developer would do it.<br><br>
 The second best usage of AI that I have encountered, is the creation of standardized scripts such as pipeline files, docker images, and various build scripts. <br>
 AI is very good at finding, and using, code snippets from official documentation that are simple instructions in isolation or with simple interactions with other scripts pieces in the same file. <br><br>
-
 All this increased productivity has highlighted the need for a suite of automatic unit and integration tests to verify that the entire business workflow is still working as intended. <br>
 These tests should be tied into the CI/CD pipeline and be executed on all code changes that are pushed to a branch. <br><br>
-
 In relation to our current project, the simple fact that the team is increasing from a single developer to a team of 3-5, no matter AI involvement, shows a significant need for robust DevOps practices. <br>
 Any increase in code produced, by human or AI, requires the surrounding processes to be well defined. 
