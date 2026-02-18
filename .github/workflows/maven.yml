@@ -29,3 +29,6 @@ jobs:
         cache: maven
     - name: Build and test with Maven
       run: mvn -B package --file pom.xml
+
+    - name: Build the tagged Docker image
+      run: docker build -t quiz-app . --file Dockerfile --tag service:latest
