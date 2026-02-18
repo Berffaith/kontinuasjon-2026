@@ -106,3 +106,14 @@ So in conclusion: all steps should be run on every commit where applicable (apar
 
 ![Code Quality Scan](./assets/screenshots/CodeQuality.png)
 
+## Oppgave 2:
+
+This was solved by using an alpine version of temurin for runtime which gives a lot smaller image.
+
+### Original Docker image size
+
+![Original Docker File](./assets/docker/OriginalDockerSize.png "Original Docker Size")
+
+### Modified Docker image size
+
+![Modified Docker File](./assets/docker/ModifiedDockerSize.png "Modified Docker Size")
