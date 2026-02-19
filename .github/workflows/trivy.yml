@@ -34,7 +34,7 @@ jobs:
           image-ref: 'quiz-app:${{ github.sha }}'
           format: 'template'
           template: '@/contrib/sarif.tpl'
-          output: 'trivy-results.sarif'
+          output: 'trivy-results-image.sarif'
           severity: 'CRITICAL,HIGH'
 
       - name: Trivy repo scan

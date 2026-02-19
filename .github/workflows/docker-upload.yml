@@ -8,8 +8,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+
+    - uses: actions/checkout@v4
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag quiz-app:latest
+    
     - name: Checkout
       uses: actions/checkout@v4
+
     - name: Extract Docker image metadata
       id: meta
       uses: docker/metadata-action@v5
@@ -24,6 +30,7 @@ jobs:
 
     - name: Build and push Docker image
       uses: docker/build-push-action@v6
+      run: docker push berffaith/kontinuasjon-2026:quiz-app
       with:
         tags: ${{ steps.meta.outputs.tags }}
         annotations: ${{ steps.meta.outputs.annotations }}
