@@ -28,6 +28,7 @@ jobs:
     name: Build the Docker image
     runs-on: ubuntu-latest
     steps:
+    - name: Docker Build
       run: docker build -t quiz-app . --file Dockerfile --tag service:${{ github.sha }}
       with:
         tags: ${{ github.sha }}, latest
