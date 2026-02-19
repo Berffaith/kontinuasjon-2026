@@ -41,16 +41,7 @@ jobs:
         username: ${{ vars.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-  trivy-setup:
-    needs: [docker-build]
-    name: Manual Trivy Setup
-    uses: aquasecurity/setup-trivy@v0.2.0
-    with:
-      cache: true
-      version: v0.69.1
-
   trivy-repo-scan:
-    needs: trivy-setup
     name: Run Trivy vulnerability scanner in repo mode
     uses: aquasecurity/trivy-action@master
     with:
@@ -59,10 +50,8 @@ jobs:
       format: 'sarif'
       output: 'trivy-results.sarif'
       severity: 'CRITICAL'
-      skip-setup-trivy: true
 
   trivy-image-scan:
-    needs: trivy-setup
     name: Run Trivy vulnerability scanner
     uses: aquasecurity/trivy-action@0.33.1
     with:
@@ -72,7 +61,6 @@ jobs:
       ignore-unfixed: true
       vuln-type: 'os,library'
       severity: 'CRITICAL,HIGH'
-      skip-setup-trivy: true
 
 # Run build and package on every push on every branch apart from main
 on:
