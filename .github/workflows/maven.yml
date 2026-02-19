@@ -30,8 +30,6 @@ jobs:
     steps:
     - name: Docker Build
       run: docker build -t quiz-app . --file Dockerfile --tag service:${{ github.sha }}
-      with:
-        tags: ${{ github.sha }}, latest
 
   docker-upload:
     name: Docker Upload
