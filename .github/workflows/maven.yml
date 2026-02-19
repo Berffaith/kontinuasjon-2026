@@ -72,4 +72,4 @@ on:
 
   pull_request:
     branches: [ "feature/*","bugfix/*","develop","main" ]
-    uses: docker-build
+    uses: build-and-test
