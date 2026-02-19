@@ -14,22 +14,21 @@ on:
     branches:
       - '*'
       - '!main'
-  jobs:
-      build:
-        runs-on: ubuntu-latest
-        steps:
-        - uses: actions/checkout@v4
-        - name: Set up JDK 21
-          uses: actions/setup-java@v4
-          with:
-            java-version: '21'
-            distribution: 'temurin'
-            cache: maven
-        - name: Build and test with Maven
-          run: mvn -B package --file pom.xml
+    jobs:
+        build:
+          runs-on: ubuntu-latest
+          steps:
+          - uses: actions/checkout@v4
+          - name: Set up JDK 21
+            uses: actions/setup-java@v4
+            with:
+              java-version: '21'
+              distribution: 'temurin'
+              cache: maven
+          - name: Build and test with Maven
+            run: mvn -B package --file pom.xml
 
 # On push to main only
-on:
   push:
     branches: 
       - 'main'
@@ -60,7 +59,6 @@ on:
             tags: ${{ github.sha }}, latest
 
 # On all pull requests
-on:
   pull_request:
     branches: [ "feature/*","bugfix/*","develop","main" ]
 jobs:
