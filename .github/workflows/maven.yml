@@ -8,10 +8,17 @@
 
 name: Java CI with Maven
 
+on:
+  push:
+    branches: [ "develop", "main", "feature/*", "bugfix/*" ]
+  pull_request:
+    branches: [ "develop", "main", "feature/*", "bugfix/*" ]
+
 jobs:
-  build-and-test:
-    name: Build and test with maven
+  build:
+
     runs-on: ubuntu-latest
+
     steps:
     - uses: actions/checkout@v4
     - name: Set up JDK 21
@@ -20,56 +27,5 @@ jobs:
         java-version: '21'
         distribution: 'temurin'
         cache: maven
-    - name: Build and test with Maven
+    - name: Build with Maven
       run: mvn -B package --file pom.xml
-
-  docker-build:
-    needs: build-and-test
-    name: Build the Docker image
-    runs-on: ubuntu-latest
-    steps:
-    - name: Docker Build
-      run: docker build -t quiz-app . --file Dockerfile --tag service:${{ github.sha }}
-
-  docker-upload:
-    name: Docker Upload
-    runs-on: ubuntu-latest
-    steps:
-    - name: Docker upload
-      uses: docker/login-action@v3
-      with:
-        username: ${{ vars.DOCKERHUB_USERNAME }}
-        password: ${{ secrets.DOCKERHUB_TOKEN }}
-
-  trivy-repo-scan:
-    name: Run Trivy vulnerability scanner in repo mode
-    uses: aquasecurity/trivy-action@master
-    with:
-      scan-type: 'fs'
-      ignore-unfixed: true
-      format: 'sarif'
-      output: 'trivy-results.sarif'
-      severity: 'CRITICAL'
-
-  trivy-image-scan:
-    name: Run Trivy vulnerability scanner
-    uses: aquasecurity/trivy-action@0.33.1
-    with:
-      image-ref: 'quiz-app:${{ github.sha }}'
-      format: 'table'
-      exit-code: '1'
-      ignore-unfixed: true
-      vuln-type: 'os,library'
-      severity: 'CRITICAL,HIGH'
-
-# Run build and package on every push on every branch apart from main
-on:
-  push:
-    branches:
-      - '*'
-      - '!main'
-    uses: build-and-test
-
-  pull_request:
-    branches: [ "feature/*","bugfix/*","develop","main" ]
-    uses: build-and-test
