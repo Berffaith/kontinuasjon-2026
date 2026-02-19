@@ -35,5 +35,5 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ github.sha }}, latest
+          tags: ${{ github.sha }}
           labels: ${{ steps.meta.outputs.labels }}
