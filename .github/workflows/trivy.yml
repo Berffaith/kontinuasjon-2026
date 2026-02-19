@@ -9,7 +9,7 @@ on:
   pull_request:
     branches: [ "develop", "main", "feature/*", "bugfix/*" ]
   push:
-    branches: [ "develop", "main"]
+    branches: [ "develop" ]
 
 permissions:
   contents: read
