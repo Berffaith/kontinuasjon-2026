@@ -33,4 +33,4 @@ jobs:
         docker push berffaith/quiz-app
         with:
           push: true
-          tags: ${{ github.sha }}, latest
+          tags: [ ${{ github.sha }}, latest ]
