@@ -117,3 +117,18 @@ This was solved by using an alpine version of temurin for runtime which gives a 
 ### Modified Docker image size
 
 ![Modified Docker File](./assets/docker/ModifiedDockerSize.png "Modified Docker Size")
+
+## Oppgave 3
+
+### Pull Request Run
+
+[Pull Request Run](https://github.com/Berffaith/kontinuasjon-2026/pull/20/checks)
+
+### Main Workflow Run
+
+I could find this as a proper link so you would have to settle for a screenshot and deduct some points
+![Main Workflow Run](./assets/workflow/PipelineMainWithDocker.png "Main Workflow Run")
+
+### Trivy Code Scanning
+
+![Trivy](./assets/workflow/CodeScanningTrivyResults.png "Trivy Code Scanning")
