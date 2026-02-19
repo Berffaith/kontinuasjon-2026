@@ -29,7 +29,6 @@ on:
             run: mvn -B package --file pom.xml
 
 # On push to main only
-  push:
     branches: 
       - 'main'
     jobs:
