@@ -35,6 +35,7 @@ jobs:
     name: Docker Upload
     runs-on: ubuntu-latest
     steps:
+    - name: Docker upload
       run:
         uses: docker/login-action@v3
         with:
