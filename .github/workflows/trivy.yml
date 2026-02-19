@@ -33,8 +33,6 @@ jobs:
       - name: Run Trivy vulnerability scanner
         id: image-scanner
         uses: aquasecurity/trivy-action@0.33.1
-        outputs: 
-          status: ${{ steps.image-scanner.conclusion }}
         with:
           image-ref: 'quiz-app:${{ github.sha }}'
           format: 'template'
@@ -45,8 +43,6 @@ jobs:
       - name: Trivy repo scan
         id: repo-scan
         uses: aquasecurity/trivy-action@master
-        outputs: 
-          status: ${{ steps.repo-scan.conclusion }}
         with:
           scan-type: 'fs'
           ignore-unfixed: true
