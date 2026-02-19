@@ -11,7 +11,7 @@ jobs:
 
     - uses: actions/checkout@v4
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag quiz-app:latest
+      run: docker build . --file Dockerfile --tag berffaith/kontinuasjon-2026:quiz-app
     
     - name: Checkout
       uses: actions/checkout@v4
@@ -30,7 +30,7 @@ jobs:
 
     - name: Build and push Docker image
       run: |
-        docker push quiz-app:latest
+        docker push berffaith/kontinuasjon-2026:quiz-app
         with:
           context: .
           file: ./Dockerfile
