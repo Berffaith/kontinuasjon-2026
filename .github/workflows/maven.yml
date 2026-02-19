@@ -26,17 +26,21 @@ jobs:
   docker-build:
     needs: build-and-test
     name: Build the Docker image
-    run: docker build -t quiz-app . --file Dockerfile --tag service:${{ github.sha }}
-    with:
-      tags: ${{ github.sha }}, latest
+    runs-on: ubuntu-latest
+    steps:
+      run: docker build -t quiz-app . --file Dockerfile --tag service:${{ github.sha }}
+      with:
+        tags: ${{ github.sha }}, latest
 
   docker-upload:
     name: Docker Upload
-    run:
-      uses: docker/login-action@v3
-      with:
-        username: ${{ vars.DOCKERHUB_USERNAME }}
-        password: ${{ secrets.DOCKERHUB_TOKEN }}
+    runs-on: ubuntu-latest
+    steps:
+      run:
+        uses: docker/login-action@v3
+        with:
+          username: ${{ vars.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
   trivy-setup:
     needs: [docker-build]
