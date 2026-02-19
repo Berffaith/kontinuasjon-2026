@@ -31,6 +31,7 @@ jobs:
           docker build -t quiz-app:${{ github.sha }} .
 
       - name: Run Trivy vulnerability scanner
+        id: image-scanner
         uses: aquasecurity/trivy-action@0.33.1
         with:
           image-ref: 'quiz-app:${{ github.sha }}'
@@ -40,15 +41,21 @@ jobs:
           severity: 'CRITICAL,HIGH'
 
       - name: Trivy repo scan
+        id: repo-scan
         uses: aquasecurity/trivy-action@master
         with:
           scan-type: 'fs'
           ignore-unfixed: true
           format: 'sarif'
           output: 'trivy-results.sarif'
-          severity: 'CRITICAL'
+          severity: 'CRITICAL,HIGH'
 
       - name: Upload Trivy scan results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@v4
         with:
           sarif_file: 'trivy-results.sarif'
+
+      - name: Fail pipeline if errors found
+        if: steps.image-scanner.output.status != 'success' || steps.repo-scan.output.status != 'success'
+        run: |
+          exit 1
