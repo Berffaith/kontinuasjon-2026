@@ -32,8 +32,5 @@ jobs:
       run: |
         docker push berffaith/kontinuasjon-2026:quiz-app
         with:
-          context: .
-          file: ./Dockerfile
           push: true
           tags: ${{ github.sha }}
-          labels: ${{ steps.meta.outputs.labels }}
