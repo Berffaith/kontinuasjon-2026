@@ -30,7 +30,7 @@ jobs:
 
     - name: Build and push Docker image
       run: |
-        docker push berffaith/kontinuasjon-2026:quiz-app
+        docker push berffaith/kontinuasjon-2026
         with:
           context: .
           file: ./Dockerfile
