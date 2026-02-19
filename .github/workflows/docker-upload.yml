@@ -29,12 +29,11 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
 
     - name: Build and push Docker image
-      uses: docker/build-push-action@v6
       run: |
         docker push berffaith/kontinuasjon-2026:quiz-app
-      with:
-        context: .
-        file: ./Dockerfile
-        push: true
-        tags: ${{ github.sha }}, latest
-        labels: ${{ steps.meta.outputs.labels }}
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: ${{ github.sha }}, latest
+          labels: ${{ steps.meta.outputs.labels }}
